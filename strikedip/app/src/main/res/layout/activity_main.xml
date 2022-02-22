@@ -1,19 +1,368 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="16dp"
+            android:background="#E3BB1B">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Sensor"
+                android:textSize="17dp"
+                android:textFontWeight="1000"
+                android:textColor="@color/black"/>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Accel(X)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvAcceloX"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Accel(Y)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvAcceloY"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Accel(Z)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvAcceloZ"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Magnet(X)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvMagnetoX"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Magnet(Y)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvMagnetoY"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Magnet(Z)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvMagnetoZ"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Rad(X)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvRadX"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Rad(Y)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvRadY"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Rad(Z)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvRadZ"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Deg(X)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvDegX"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Deg(Y)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvDegY"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Deg(Z)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvDegZ"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="16dp"
+            android:background="#E3BB1B">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Strike Dip"
+                android:textSize="17dp"
+                android:textFontWeight="1000"
+                android:textColor="@color/black"/>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Strike (Vector)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvStrikeVector"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Strike (Rotate)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvStrikeRotate"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Strike (Trigono))"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvStrikeTrigono"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Arah Dip (Vector)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvArahDipVector"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Arah Dip (Rotate)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvArahDipRotate"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Arah Dip (Trigono)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvArahDipTrigono"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Sudut Dip (Vector)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvSudutDipVector"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Sudut Dip (Rotate)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvSudutDipRotate"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Sudut Dip (Trigono)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvSudutDipTrigono"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTakeStrikeDip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Ambil Data"/>
+
+    </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
