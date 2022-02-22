@@ -121,35 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
                     <TextView
-                        android:text="Rad(X)    :"
-                        android:textSize="14dp"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:id="@+id/tvRadX"
-                        android:text=":     12345"
-                        android:textSize="14dp"
-                        android:textColor="@color/black"/>
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp">
-                    <TextView
-                        android:text="Rad(Y)    :"
-                        android:textSize="14dp"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:id="@+id/tvRadY"
-                        android:text=":     12345"
-                        android:textSize="14dp"
-                        android:textColor="@color/black"/>
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp">
-                    <TextView
-                        android:text="Rad(Z)    :"
+                        android:text="Rad(Z/Azimuth)    :"
                         android:textSize="14dp"
                         android:textColor="@color/black"/>
                     <TextView
@@ -163,7 +135,49 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
                     <TextView
-                        android:text="Deg(X)    :"
+                        android:text="Rad(X/pitch)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvRadX"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Rad(Y/Roll)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvRadY"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Deg(Z/Azimuth)    :"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvDegZ"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Deg(X/Pitch)    :"
                         android:textSize="14dp"
                         android:textColor="@color/black"/>
                     <TextView
@@ -177,25 +191,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
                     <TextView
-                        android:text="Deg(Y)    :"
+                        android:text="Deg(Y/Roll)    :"
                         android:textSize="14dp"
                         android:textColor="@color/black"/>
                     <TextView
                         android:id="@+id/tvDegY"
-                        android:text=":     12345"
-                        android:textSize="14dp"
-                        android:textColor="@color/black"/>
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp">
-                    <TextView
-                        android:text="Deg(Z)    :"
-                        android:textSize="14dp"
-                        android:textColor="@color/black"/>
-                    <TextView
-                        android:id="@+id/tvDegZ"
                         android:text=":     12345"
                         android:textSize="14dp"
                         android:textColor="@color/black"/>

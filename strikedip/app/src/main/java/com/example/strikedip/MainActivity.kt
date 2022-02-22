@@ -1,5 +1,6 @@
 package com.example.strikedip
 
+import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -9,7 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.strikedip.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), SensorEventListener {
+class MainActivity : AppCompatActivity(), SensorEventListener{
     private lateinit var binding: ActivityMainBinding
     private lateinit var sensorManager: SensorManager
 
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
     override fun onResume() {
@@ -60,16 +63,16 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
 
         updateOrientationAngles()
-        //initView()
+        initView()
     }
 
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
         if (accuracy > 50) {
             Log.e("berubah akurasi", "lebih besar 50")
         }
     }
 
-    fun updateOrientationAngles() {
+    private fun updateOrientationAngles() {
         SensorManager.getRotationMatrix(
             rotationMatrix,
             null,
@@ -89,14 +92,19 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             tvMagnetoY.text = magnetometerReading[1].toString()
             tvMagnetoZ.text = magnetometerReading[2].toString()
 
-            tvDegX.text = Math.toDegrees(orientationAngles[0].toDouble()).toString()
-            tvDegY.text = Math.toDegrees(orientationAngles[1].toDouble()).toString()
-            tvDegZ.text = Math.toDegrees(orientationAngles[2].toDouble()).toString()
+            tvDegZ.text = Math.toDegrees(orientationAngles[0].toDouble()).toString()
+            tvDegX.text = Math.toDegrees(orientationAngles[1].toDouble()).toString()
+            tvDegY.text = Math.toDegrees(orientationAngles[2].toDouble()).toString()
 
-            tvRadX.text = orientationAngles[0].toString()
-            tvRadY.text = orientationAngles[1].toString()
-            tvRadZ.text = orientationAngles[2].toString()
+            tvRadZ.text = orientationAngles[0].toString()
+            tvRadX.text = orientationAngles[1].toString()
+            tvRadY.text = orientationAngles[2].toString()
         }
     }
 
+    private fun vectorMethod(){}
+
+    private fun rotationMethod(){}
+
+    private fun trigonoMethod(){}
 }
