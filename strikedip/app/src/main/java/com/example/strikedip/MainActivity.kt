@@ -1,6 +1,7 @@
 package com.example.strikedip
 
 import android.content.Context
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.strikedip.databinding.ActivityMainBinding
+import com.mapbox.maps.MapInitOptions
 
 class MainActivity : AppCompatActivity(), SensorEventListener{
     private lateinit var binding: ActivityMainBinding
@@ -26,8 +28,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener{
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
+        MapInitOptions.getDefaultResourceOptions(BuildConfig.mapbox_access_token)
+
+        binding.btnMap.setOnClickListener{
+            val intent = Intent(this, MapActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {

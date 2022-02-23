@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Strike dip</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoibHVxbWFucm0iLCJhIjoiY2t6ejd3aTR6MDdpNzNkbmY3ZW1nN2NpdiJ9.7ubcE4iFVRzwi-iOyM1Qfg</string>
 </resources>
