@@ -9,8 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.strikedip.databinding.ActivityMainBinding
+import kotlin.math.*
 
-class MainActivity : AppCompatActivity(), SensorEventListener{
+class MainActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var sensorManager: SensorManager
 
@@ -19,6 +20,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener{
 
     private val rotationMatrix = FloatArray(9)
     private val orientationAngles = FloatArray(3)
+
+    private lateinit var vectorMethod: Array<Double>
+    private lateinit var rotationMethod: Array<Double>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +67,27 @@ class MainActivity : AppCompatActivity(), SensorEventListener{
         }
 
         updateOrientationAngles()
+
+        vectorMethod = vectorMethod(
+            arrayOf(
+                accelerometerReading[0].toDouble(),
+                accelerometerReading[1].toDouble(),
+                accelerometerReading[2].toDouble()
+            ),
+            arrayOf(
+                magnetometerReading[0].toDouble(),
+                magnetometerReading[1].toDouble(),
+                magnetometerReading[2].toDouble()
+            ),
+            orientationAngles[1].toDouble()
+        )
+
+        rotationMethod = rotationMethod(
+            orientationAngles[1].toDouble(),
+            orientationAngles[2].toDouble(),
+            orientationAngles[0].toDouble()
+        )
+
         initView()
     }
 
@@ -82,8 +107,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener{
         SensorManager.getOrientation(rotationMatrix, orientationAngles)
     }
 
-    private fun initView(){
-        with(binding){
+    private fun initView() {
+        with(binding) {
             tvAcceloX.text = accelerometerReading[0].toString()
             tvAcceloY.text = accelerometerReading[1].toString()
             tvAcceloZ.text = accelerometerReading[2].toString()
@@ -99,12 +124,123 @@ class MainActivity : AppCompatActivity(), SensorEventListener{
             tvRadZ.text = orientationAngles[0].toString()
             tvRadX.text = orientationAngles[1].toString()
             tvRadY.text = orientationAngles[2].toString()
+
+            tvSudutDipVector.text = vectorMethod[0].toString()
+            tvSudutDipRotate.text = rotationMethod[0].toString()
+
+            tvArahDipVector.text = vectorMethod[1].toString()
+            tvArahDipRotate.text = rotationMethod[1].toString()
+
+            tvStrikeVector.text = vectorMethod[2].toString()
+            tvStrikeRotate.text = vectorMethod[2].toString()
         }
     }
 
-    private fun vectorMethod(){}
+    private fun vectorMethod(
+        accelerometer: Array<Double>,
+        magnetometer: Array<Double>,
+        pitch: Double
+    ): Array<Double> {
 
-    private fun rotationMethod(){}
+        val n2 = if (pitch > -90 && pitch < 90) {
+            -1
+        } else {
+            1
+        }
+        val N = arrayOf(0, 0, n2)
 
-    private fun trigonoMethod(){}
+        val crossAccelMagnet = arrayOf(
+            accelerometer[1] * magnetometer[2] - accelerometer[2] * magnetometer[1],
+            accelerometer[2] * magnetometer[0] - accelerometer[0] * magnetometer[2],
+            accelerometer[0] * magnetometer[1] - accelerometer[1] * magnetometer[0]
+        )
+
+        val crossAccelN = arrayOf(
+            accelerometer[1] * N[2] - accelerometer[2] * N[1],
+            accelerometer[2] * N[0] - accelerometer[0] * N[2],
+            accelerometer[0] * N[1] - accelerometer[1] * N[0]
+        )
+
+        val A2E = Math.toDegrees(
+            acos(
+                (crossAccelMagnet[0] * crossAccelN[0]
+                        + crossAccelMagnet[1] * crossAccelN[1] +
+                        crossAccelMagnet[2] * crossAccelN[2]) /
+                        (sqrt(
+                            crossAccelMagnet[0] * crossAccelMagnet[0] +
+                                    crossAccelMagnet[1] * crossAccelMagnet[1] +
+                                    crossAccelMagnet[2] * crossAccelMagnet[2]
+                        ) * sqrt(
+                            crossAccelN[0] * crossAccelN[0] +
+                                    crossAccelN[1] * crossAccelN[1] +
+                                    crossAccelN[2] * crossAccelN[2]
+                        ))
+            )
+        )
+
+        val clockwise =
+            if ((crossAccelN[0] * crossAccelMagnet[1] - crossAccelMagnet[0] * crossAccelN[1]) > 0) {
+                1
+            } else {
+                -1
+            }
+
+        val sudutDip = Math.toDegrees(
+            acos(
+                abs(
+                    accelerometer[2] / sqrt(
+                        accelerometer[0] * accelerometer[0] +
+                                accelerometer[1] * accelerometer[1] +
+                                accelerometer[2] * accelerometer[2]
+                    )
+                )
+            )
+        )
+        val strike = (90 + (clockwise * A2E) + 720) % 360
+        val arahDip = (strike - N[2] * 90 + 720) % 360
+
+        return arrayOf(sudutDip, arahDip, strike)
+    }
+
+    private fun rotationMethod(pitch: Double, roll: Double, azimuth: Double): Array<Double> {
+        val vx = sin(pitch) * sin(azimuth) + cos(pitch) * cos(azimuth) * sin(roll)
+        val vy = cos(pitch) * sin(roll) * sin(azimuth) - cos(azimuth) * sin(pitch)
+        val vz = cos(pitch) * cos(roll)
+
+        val dipAngle: Double = if (vz > 0) {
+            Math.toDegrees(atan(sqrt(vx * vx + vy * vy) / vz))
+        } else {
+            Math.toDegrees(atan(sqrt(vx * vx + vy * vy) / -vz))
+        }
+
+        //Log.d("vx", vx.toString())
+        //Log.d("vy", vy.toString())
+        //Log.d("vz", vz.toString())
+        //Log.d("atan", Math.toDegrees(atan(vy / vx)).toString())
+
+        val strikeOfDip: Double = if (vz >= 0) {
+            if (vx > 0) {
+                90 + Math.toDegrees(atan(vy / vx))
+            } else {
+                270 + Math.toDegrees(atan(vy / vx))
+            }
+        } else {
+            if (vx > 0) {
+                270 + Math.toDegrees(atan(vy / vx))
+            } else {
+                90 + Math.toDegrees(atan(vy / vx))
+            }
+        }
+
+        val strike = if (strikeOfDip < 90) {
+            360 - (strikeOfDip - 90)
+        } else {
+            strikeOfDip - 90
+        }
+
+        return arrayOf(dipAngle, strikeOfDip, strike)
+    }
+
+    private fun trigonoMethod() {}
+
 }
