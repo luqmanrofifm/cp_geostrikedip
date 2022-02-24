@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var vectorMethod: Array<Double>
     private lateinit var rotationMethod: Array<Double>
+    private lateinit var trigonoMethod: Array<Double>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +89,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             orientationAngles[0].toDouble()
         )
 
+        trigonoMethod = trigonoMethod(
+            orientationAngles[1].toDouble(),
+            orientationAngles[2].toDouble(),
+            orientationAngles[0].toDouble()
+        )
+
         initView()
     }
 
@@ -127,12 +134,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
             tvSudutDipVector.text = vectorMethod[0].toString()
             tvSudutDipRotate.text = rotationMethod[0].toString()
+            tvSudutDipTrigono.text = trigonoMethod[0].toString()
 
             tvArahDipVector.text = vectorMethod[1].toString()
             tvArahDipRotate.text = rotationMethod[1].toString()
+            tvArahDipTrigono.text = trigonoMethod[1].toString()
 
             tvStrikeVector.text = vectorMethod[2].toString()
-            tvStrikeRotate.text = vectorMethod[2].toString()
+            tvStrikeRotate.text = rotationMethod[2].toString()
+            tvStrikeTrigono.text = trigonoMethod[2].toString()
         }
     }
 
@@ -232,15 +242,36 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             }
         }
 
-        val strike = if (strikeOfDip < 90) {
-            360 - (strikeOfDip - 90)
-        } else {
-            strikeOfDip - 90
-        }
+        val strike = (strikeOfDip - 90 + 720)%360
+//            if (strikeOfDip < 90) {
+//            360 - (strikeOfDip - 90)
+//        } else {
+//            strikeOfDip - 90
+//        }
 
         return arrayOf(dipAngle, strikeOfDip, strike)
     }
 
-    private fun trigonoMethod() {}
+    private fun trigonoMethod(pitch: Double, roll: Double, azimuth: Double):Array<Double> {
+        val sinPitch = sin(pitch)
+        val sinRoll = sin(roll)
+
+        val dipAngle = abs(
+            Math.toDegrees(
+                asin(sqrt(1/sinPitch/sinPitch+1/sinRoll/sinRoll)*sinPitch*sinRoll)
+            )
+        )
+        val epsilon = Math.toDegrees(acos(sinPitch / sin(Math.toRadians(dipAngle))))
+
+        val arahDip = if(roll>0){
+            (azimuth-epsilon+720)%360
+        } else{
+            (azimuth+epsilon+720)%360
+        }
+
+        val strike = (arahDip - 90 + 720)%360
+
+        return arrayOf(dipAngle,arahDip,strike)
+    }
 
 }
