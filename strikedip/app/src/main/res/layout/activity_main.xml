@@ -229,6 +229,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
                     <TextView
+                        android:text="Strike (Direct Read)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvStrikeDirectRead"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
                         android:text="Strike (Vector)"
                         android:textSize="14dp"
                         android:textColor="@color/black"/>
@@ -271,6 +285,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
                     <TextView
+                        android:text="Arah Dip (Direct Read)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvArahDipDirectRead"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
                         android:text="Arah Dip (Vector)"
                         android:textSize="14dp"
                         android:textColor="@color/black"/>
@@ -304,6 +332,20 @@
                         android:textColor="@color/black"/>
                     <TextView
                         android:id="@+id/tvArahDipTrigono"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Sudut Dip (Direct Read)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvSudutDipDirectRead"
                         android:text=":     12345"
                         android:textSize="14dp"
                         android:textColor="@color/black"/>

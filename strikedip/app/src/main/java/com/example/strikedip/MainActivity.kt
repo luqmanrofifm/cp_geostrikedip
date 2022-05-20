@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private val rotationMatrix = FloatArray(9)
     private val orientationAngles = FloatArray(3)
 
+    private lateinit var directReadingMethod: Array<Double>
     private lateinit var vectorMethod: Array<Double>
     private lateinit var rotationMethod: Array<Double>
     private lateinit var trigonoMethod: Array<Double>
@@ -68,6 +69,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
 
         updateOrientationAngles()
+
+        directReadingMethod = directReadingMethod(
+            arrayOf(
+                accelerometerReading[0].toDouble(),
+                accelerometerReading[1].toDouble(),
+                accelerometerReading[2].toDouble()
+            )
+        )
 
         vectorMethod = vectorMethod(
             arrayOf(
@@ -132,14 +141,17 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             tvRadX.text = orientationAngles[1].toString()
             tvRadY.text = orientationAngles[2].toString()
 
+            tvSudutDipDirectRead.text = directReadingMethod[0].toString()
             tvSudutDipVector.text = vectorMethod[0].toString()
             tvSudutDipRotate.text = rotationMethod[0].toString()
             tvSudutDipTrigono.text = trigonoMethod[0].toString()
 
+            tvArahDipDirectRead.text = directReadingMethod[1].toString()
             tvArahDipVector.text = vectorMethod[1].toString()
             tvArahDipRotate.text = rotationMethod[1].toString()
             tvArahDipTrigono.text = trigonoMethod[1].toString()
 
+            tvStrikeDirectRead.text = directReadingMethod[2].toString()
             tvStrikeVector.text = vectorMethod[2].toString()
             tvStrikeRotate.text = rotationMethod[2].toString()
             tvStrikeTrigono.text = trigonoMethod[2].toString()
@@ -272,6 +284,43 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val strike = (arahDip - 90 + 720)%360
 
         return arrayOf(dipAngle,arahDip,strike)
+    }
+
+    private fun directReadingMethod(accelerometer: Array<Double>): Array<Double>{
+        val dipAngle = if (accelerometer[2] > 0){
+            atan(sqrt(accelerometer[0].pow(2) + accelerometer[1].pow(2))/accelerometer[2])
+        } else if (accelerometer[2] < 0){
+            atan(sqrt(accelerometer[0].pow(2) + accelerometer[1].pow(2))/(-1 * accelerometer[2]))
+        } else {
+            90.0
+        }
+
+        val arahDip = if (accelerometer[0] != 0.0){
+            if (accelerometer[2] >= 0){
+                if (accelerometer[0]>0){
+                    180 - atan(accelerometer[1]/accelerometer[0])
+                } else {
+                    0 - atan(accelerometer[1]/accelerometer[0])
+                }
+            } else {
+                if (accelerometer[0]>0){
+                    0 - atan(accelerometer[1]/accelerometer[0])
+                } else {
+                    180 - atan(accelerometer[1]/accelerometer[0])
+                }
+            }
+        } else {
+            if(accelerometer[1]>0){
+                0.0
+            } else if (accelerometer[1]<0){
+                90.0
+            } else {
+                Double.NaN
+            }
+        }
+
+        val strike = (arahDip - 90 + 720)%360
+        return arrayOf(dipAngle, arahDip, strike)
     }
 
 }
