@@ -1,48 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    tools:context=".DetailStrikeDipActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btnExportCSV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Export CSV"
-            app:backgroundTint="#E3BB1B"
-            android:layout_margin="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"/>
-
-        <Button
-            android:id="@+id/btnAddObject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:backgroundTint="@color/purple_200"
-            android:textColor="@color/black"
-            android:text="Tambah Object"
-            android:layout_margin="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvObject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
-            tools:listitem="@layout/item_object"/>
-    </LinearLayout>
-
-
-    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -428,19 +392,66 @@
                         android:textSize="14dp"
                         android:textColor="@color/black"/>
                 </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Time (Direct Read)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvTimeDirectRead"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Time (Vector)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvTimeVector"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Time (Rotate)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvTimeRotate"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:text="Time (Trigono)"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/tvTimeTrigono"
+                        android:text=":     12345"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+                </TableRow>
             </TableLayout>
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnTakeStrikeDip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="Ambil Data"/>
-
-    </LinearLayout>-->
+    </LinearLayout>
 
 
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>
