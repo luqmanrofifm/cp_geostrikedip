@@ -11,8 +11,10 @@ class MainViewModel(
 ) : AndroidViewModel(application){
 
     lateinit var listObject : LiveData<List<ObjectEntity>>
-    lateinit var objectList: List<ObjectEntity>
-    lateinit var strikeDipList: List<StrikeDipEntity>
+    lateinit var listStrikeDip: LiveData<List<StrikeDipEntity>>
+
+    var objectList: List<ObjectEntity>  = emptyList()
+    var strikeDipList: List<StrikeDipEntity> = emptyList()
 
     fun getObject(){
         viewModelScope.launch{
@@ -29,8 +31,8 @@ class MainViewModel(
 
     fun getDataList(){
         viewModelScope.launch {
-            objectList = objectDao.getObjectList()
-            strikeDipList = strikeDipDao.getDataStrikeDipList()
+            //objectList = objectDao.getObjectList()
+            listStrikeDip = strikeDipDao.getAllDataStrikeDip()
         }
     }
 }

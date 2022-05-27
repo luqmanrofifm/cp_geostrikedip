@@ -17,6 +17,9 @@ interface StrikeDipDao {
     fun getDataStrikeDipById(id: Int): LiveData<StrikeDipEntity>
 
     @Query("SELECT * FROM strike_dip")
+    fun getAllDataStrikeDip(): LiveData<List<StrikeDipEntity>>
+
+    @Query("SELECT * FROM strike_dip")
     fun getDataStrikeDipList(): List<StrikeDipEntity>
 
     @Query("DELETE FROM strike_dip WHERE id =:id")
