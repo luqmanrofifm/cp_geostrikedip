@@ -376,17 +376,21 @@ class MeasureActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun trigonoMethod(pitch: Double, roll: Double, azimuth: Double):Array<Double> {
-        val sinPitch = sin(pitch)
-        val sinRoll = sin(roll)
+        val sinPitch = sin(pitch) //x
+        val sinRoll = sin(roll)  // y
 
         val dipAngle = abs(
             Math.toDegrees(
                 asin(sqrt(1/sinPitch/sinPitch+1/sinRoll/sinRoll) *sinPitch*sinRoll)
             )
         )
-        val epsilon = Math.toDegrees(acos(sinPitch / sin(Math.toRadians(dipAngle))))
+        val epsilon = if (Math.toDegrees(pitch)<0){
+            180 - Math.toDegrees(acos(sinPitch / sin(Math.toRadians(dipAngle))))
+        } else {
+            Math.toDegrees(acos(sinPitch / sin(Math.toRadians(dipAngle))))
+        }
 
-        val arahDip = if(roll>0){
+        val arahDip = if(Math.toDegrees(roll)>0){
             (azimuth-epsilon+720)%360
         } else{
             (azimuth+epsilon+720)%360
@@ -399,9 +403,9 @@ class MeasureActivity : AppCompatActivity(), SensorEventListener {
 
     private fun directReadingMethod(accelerometer: Array<Double>): Array<Double>{
         val dipAngle = if (accelerometer[2] > 0){
-            atan(sqrt(accelerometer[0].pow(2) + accelerometer[1].pow(2)) /accelerometer[2])
+            Math.toDegrees(atan(sqrt(accelerometer[0].pow(2) + accelerometer[1].pow(2)) /accelerometer[2]))
         } else if (accelerometer[2] < 0){
-            atan(sqrt(accelerometer[0].pow(2) + accelerometer[1].pow(2)) /(-1 * accelerometer[2]))
+            Math.toDegrees(atan(sqrt(accelerometer[0].pow(2) + accelerometer[1].pow(2)) /(-1 * accelerometer[2])))
         } else {
             90.0
         }
@@ -409,15 +413,19 @@ class MeasureActivity : AppCompatActivity(), SensorEventListener {
         val arahDip = if (accelerometer[0] != 0.0){
             if (accelerometer[2] >= 0){
                 if (accelerometer[0]>0){
-                    180 - atan(accelerometer[1]/accelerometer[0])
+                    180 - Math.toDegrees(atan(accelerometer[1]/accelerometer[0]))
+                    //90 - Math.toDegrees(atan(accelerometer[1]/accelerometer[0]))
                 } else {
-                    0 - atan(accelerometer[1]/accelerometer[0])
+                    0 - Math.toDegrees(atan(accelerometer[1]/accelerometer[0]))
+                    //270 - Math.toDegrees(atan(accelerometer[1]/accelerometer[0]))
                 }
             } else {
                 if (accelerometer[0]>0){
-                    0 - atan(accelerometer[1]/accelerometer[0])
+                    0 - Math.toDegrees(atan(accelerometer[1]/accelerometer[0]))
+                    //270 - Math.toDegrees(atan(accelerometer[1]/accelerometer[0]))
                 } else {
-                    180 - atan(accelerometer[1]/accelerometer[0])
+                    180 - Math.toDegrees(atan(accelerometer[1]/accelerometer[0]))
+                    //90 - Math.toDegrees(atan(accelerometer[1]/accelerometer[0]))
                 }
             }
         } else {
