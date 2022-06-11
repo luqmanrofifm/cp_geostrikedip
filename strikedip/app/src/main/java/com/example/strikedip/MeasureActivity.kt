@@ -9,6 +9,8 @@ import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import androidx.lifecycle.ViewModelProvider
 import com.example.strikedip.databinding.ActivityMainBinding
 import com.example.strikedip.databinding.ActivityMeasureBinding
@@ -35,6 +37,8 @@ class MeasureActivity : AppCompatActivity(), SensorEventListener {
     private var time_vector: Long = 0
     private var time_rotation: Long = 0
     private var time_trigono: Long = 0
+
+    private var lastDegree: Float = 0f
 
     private val idObject by lazy {
         intent.getIntExtra(ListStrikeDipActivity.EXTRA_ID_OBJECT, 0)
@@ -211,7 +215,30 @@ class MeasureActivity : AppCompatActivity(), SensorEventListener {
         }
 
         initView()
+        runOnUiThread{
+            animateStrikeDip(
+                rotationMethod[2].toFloat() - Math.toDegrees(orientationAngles[0].toDouble()).toFloat()
+            )
+        }
     }
+
+    private fun animateStrikeDip(degree: Float) {
+        val an: Animation = RotateAnimation(
+            lastDegree,
+            degree,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f)
+
+        lastDegree = degree
+
+        an.duration = 500
+        an.repeatCount = 0
+        an.fillAfter = true
+        binding.imgStrikeDip.startAnimation(an)
+    }
+
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
         if (accuracy > 50) {

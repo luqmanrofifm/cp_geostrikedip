@@ -19,7 +19,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:padding="16dp"
-            android:background="#E3BB1B">
+            android:background="#E3BB1B"
+            android:visibility="gone">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -225,6 +226,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="20dp">
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -239,6 +241,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -267,6 +270,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -281,6 +285,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -295,6 +300,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -323,6 +329,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -337,6 +344,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -351,6 +359,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -379,6 +388,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -392,8 +402,8 @@
                         android:textSize="14dp"
                         android:textColor="@color/black"/>
                 </TableRow>
-
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -408,6 +418,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -422,6 +433,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -436,6 +448,7 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp">
@@ -451,6 +464,34 @@
                 </TableRow>
             </TableLayout>
         </LinearLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="64dp"
+            android:paddingRight="64dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_kompas"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/rectangle_1"/>
+
+            <ImageView
+                android:id="@+id/imgStrikeDip"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_strikedip_sign"/>
+
+        </FrameLayout>
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnTakeStrikeDip"
